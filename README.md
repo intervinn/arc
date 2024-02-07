@@ -32,3 +32,4 @@ Check examples folder for more.
 * Dynamic Routing
 * Route Params
 * Templates?
+* Middleware
