@@ -26,9 +26,9 @@ func main() {
 }
 ```
 
-Check examples folder for more.
+Check examples folder for more
 
 # TODO
 * Dynamic Routing
 * Route Params
-* Templates?
+* Templates

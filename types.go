@@ -14,6 +14,10 @@ const (
 	MethodTrace   = "TRACE"
 )
 
+type Usable interface {
+	HandlerFunc | Router
+}
+
 type Map map[string]any
 
 type ParamFunc func(*Router)
@@ -22,23 +26,8 @@ type HandlerFunc func(*Ctx) error
 type Ctx struct {
 	Response http.ResponseWriter
 	Request  *http.Request
+	local    map[string]any
 }
-
-/*
-DYNAMIC ROUTING
-the route will have routes starting with :
-parse the route template and copy the param name and its index
-parse the url and return param values at index
-
-PARSING URL
-first see static urls
-
-then see dynamic urls, check if slash splits are equal and
-values parse properly
-
-if any error happens just continue and if it doenst find anything do something
-
-*/
 
 type RouterConfig struct {
 	Prefix  string
@@ -46,12 +35,20 @@ type RouterConfig struct {
 }
 
 type Router struct {
-	Config   RouterConfig
-	Handlers []*Handler
+	Config     RouterConfig
+	handlers   []*Handler
+	middleware []*Middleware
 }
 
+// basic route handler
 type Handler struct {
 	Route  string
 	Method string
+	Func   HandlerFunc
+}
+
+// middleware
+type Middleware struct {
+	Prefix string
 	Func   HandlerFunc
 }
