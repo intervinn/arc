@@ -31,5 +31,5 @@ Check examples folder for more
 # TODO
 * Dynamic Routing
 * Route Params
-* Templates
+* Templates?
 * ~~Middleware~~
