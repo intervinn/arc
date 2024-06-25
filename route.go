@@ -2,18 +2,18 @@ package arc
 
 import "strings"
 
-func ConnectRoutes(vals ...string) string {
-	res := ""
-
-	for i := 0; i < len(vals)-1; i++ {
-		a := vals[i]
-		b := vals[i+1]
-
-		if strings.HasSuffix(a, "/") && strings.HasPrefix(b, "/") {
-			res += a[:len(a)-1] + b
+func Pieces(r string) []string {
+	s := strings.Split(r, "/")
+	res := []string{}
+	for _, v := range s {
+		if !IsEmpty(v) {
+			res = append(res, v)
 		}
 	}
 
 	return res
+}
 
+func IsEmpty(s string) bool {
+	return s == ""
 }
