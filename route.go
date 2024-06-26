@@ -17,3 +17,7 @@ func Pieces(r string) []string {
 func IsEmpty(s string) bool {
 	return s == ""
 }
+
+func IsPattern(s string) bool {
+	return strings.HasPrefix(s, ":")
+}
